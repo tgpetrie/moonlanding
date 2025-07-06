@@ -5,7 +5,7 @@ import LosersTable from './components/LosersTable';
 import TopBannerScroll from './components/TopBannerScroll';
 import BottomBannerScroll from './components/BottomBannerScroll';
 import Footer from './components/Footer';
-import Logo from '/yup.png';
+import Logo from './yup.png';
 
 // Live data polling interval (ms)
 const POLL_INTERVAL = 30000;
@@ -37,10 +37,11 @@ export default function App() {
     
     const checkConnection = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://t-mooners-production.up.railway.app/api'}`);
         setIsConnected(response.ok);
       } catch (error) {
-        console.error('Connection check failed:', error);
+        // Handle the exception by logging and updating connection state
+        console.error('Error checking backend connection:', error);
         setIsConnected(false);
       }
     };
