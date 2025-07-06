@@ -71,57 +71,71 @@ const BottomBannerScroll = () => {
             {/* First set of data */}
             {data.map((coin) => (
               <div key={`first-${coin.symbol}`} className="flex-shrink-0 mx-8 hover:scale-105 transition-transform duration-300">
-                <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-300">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-headline font-bold tracking-wide text-light">
-                      {coin.symbol}
-                    </span>
-                    <span className="font-mono text-lg font-bold text-[#00C0A5] bg-transparent px-3 py-2 rounded">
-                      ${coin.price < 1 ? coin.price.toFixed(4) : coin.price.toFixed(2)}
-                    </span>
+                <a 
+                  href={`https://www.coinbase.com/advanced-trade/spot/${coin.symbol}-USD`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-400 hover:to-orange-200 transition-all duration-300">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-headline font-bold tracking-wide text-light">
+                        {coin.symbol}
+                      </span>
+                      <span className="font-mono text-lg font-bold text-[#00C0A5] bg-transparent px-3 py-2 rounded">
+                        ${coin.price < 1 ? coin.price.toFixed(4) : coin.price.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-lg font-bold text-blue">
+                      <span>{coin.volumeChange >= 0 ? '+' : ''}{coin.volumeChange.toFixed(2)}%</span>
+                    </div>
+                    {(() => {
+                      let label = 'WEAK';
+                      if (coin.volumeChange >= 5) label = 'STRONG';
+                      else if (coin.volumeChange >= 2) label = 'MODERATE';
+                      return (
+                        <div className={`px-3 py-2 rounded-full text-sm font-bold tracking-wide ${getBadgeStyle(coin.volumeChange)}`}>
+                          {label}
+                        </div>
+                      );
+                    })()}
                   </div>
-                  <div className="flex items-center gap-1 text-lg font-bold text-blue">
-                    <span>{coin.volumeChange >= 0 ? '+' : ''}{coin.volumeChange.toFixed(2)}%</span>
-                  </div>
-                  {(() => {
-                    let label = 'WEAK';
-                    if (coin.volumeChange >= 5) label = 'STRONG';
-                    else if (coin.volumeChange >= 2) label = 'MODERATE';
-                    return (
-                      <div className={`px-3 py-2 rounded-full text-sm font-bold tracking-wide ${getBadgeStyle(coin.volumeChange)}`}>
-                        {label}
-                      </div>
-                    );
-                  })()}
-                </div>
+                </a>
               </div>
             ))}
             {/* Duplicate set for seamless scrolling (use volumeChange and badge logic) */}
             {data.map((coin) => (
               <div key={`second-${coin.symbol}`} className="flex-shrink-0 mx-8 hover:scale-105 transition-transform duration-300">
-                <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-300">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-headline font-bold tracking-wide text-light">
-                      {coin.symbol}
-                    </span>
-                    <span className="font-mono text-lg font-bold text-[#00C0A5] bg-transparent px-3 py-2 rounded">
-                      ${coin.price < 1 ? coin.price.toFixed(4) : coin.price.toFixed(2)}
-                    </span>
+                <a 
+                  href={`https://www.coinbase.com/advanced-trade/spot/${coin.symbol}-USD`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-400 hover:to-orange-200 transition-all duration-300">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-headline font-bold tracking-wide text-light">
+                        {coin.symbol}
+                      </span>
+                      <span className="font-mono text-lg font-bold text-[#00C0A5] bg-transparent px-3 py-2 rounded">
+                        ${coin.price < 1 ? coin.price.toFixed(4) : coin.price.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-lg font-bold text-blue">
+                      <span>{coin.volumeChange >= 0 ? '+' : ''}{coin.volumeChange.toFixed(2)}%</span>
+                    </div>
+                    {(() => {
+                      let label = 'WEAK';
+                      if (coin.volumeChange >= 5) label = 'STRONG';
+                      else if (coin.volumeChange >= 2) label = 'MODERATE';
+                      return (
+                        <div className={`px-3 py-2 rounded-full text-sm font-bold tracking-wide ${getBadgeStyle(coin.volumeChange)}`}>
+                          {label}
+                        </div>
+                      );
+                    })()}
                   </div>
-                  <div className="flex items-center gap-1 text-lg font-bold text-blue">
-                    <span>{coin.volumeChange >= 0 ? '+' : ''}{coin.volumeChange.toFixed(2)}%</span>
-                  </div>
-                  {(() => {
-                    let label = 'WEAK';
-                    if (coin.volumeChange >= 5) label = 'STRONG';
-                    else if (coin.volumeChange >= 2) label = 'MODERATE';
-                    return (
-                      <div className={`px-3 py-2 rounded-full text-sm font-bold tracking-wide ${getBadgeStyle(coin.volumeChange)}`}>
-                        {label}
-                      </div>
-                    );
-                  })()}
-                </div>
+                </a>
               </div>
             ))}
           </div>

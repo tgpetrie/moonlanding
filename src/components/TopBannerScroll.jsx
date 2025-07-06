@@ -87,22 +87,29 @@ const TopBannerScroll = () => {
             {/* Scrolling coins */}
             {data.map((coin) => (
               <div key={`first-${coin.symbol}`} className="flex-shrink-0 mx-8 hover:scale-105 transition-transform duration-300">
-                <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-300">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-headline font-bold tracking-wide text-light">
-                      {coin.symbol}
-                    </span>
-                    <span className="font-mono text-lg font-bold text-[#00C0A5] bg-transparent px-3 py-2 rounded">
-                      ${coin.price < 1 ? coin.price.toFixed(4) : coin.price.toFixed(2)}
-                    </span>
+                <a 
+                  href={`https://www.coinbase.com/advanced-trade/spot/${coin.symbol}-USD`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <div className="flex items-center gap-4 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-400 hover:to-orange-200 transition-all duration-300">
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-headline font-bold tracking-wide text-light">
+                        {coin.symbol}
+                      </span>
+                      <span className="font-mono text-lg font-bold text-[#00C0A5] bg-transparent px-3 py-2 rounded">
+                        ${coin.price < 1 ? coin.price.toFixed(4) : coin.price.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1 text-lg font-bold text-blue">
+                      <span>{coin.change >= 0 ? '+' : ''}{coin.change.toFixed(2)}%</span>
+                    </div>
+                    <div className={`px-3 py-2 rounded-full text-sm font-bold tracking-wide ${getBadgeStyle(coin.change)}`}>
+                      {coin.change >= 5 ? 'STRONG' : coin.change >= 2 ? 'MODERATE' : 'WEAK'}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1 text-lg font-bold text-blue">
-                    <span>{coin.change >= 0 ? '+' : ''}{coin.change.toFixed(2)}%</span>
-                  </div>
-                  <div className={`px-3 py-2 rounded-full text-sm font-bold tracking-wide ${getBadgeStyle(coin.change)}`}>
-                    {coin.change >= 5 ? 'STRONG' : coin.change >= 2 ? 'MODERATE' : 'WEAK'}
-                  </div>
-                </div>
+                </a>
               </div>
             ))}
           </div>

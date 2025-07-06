@@ -5,7 +5,7 @@
 echo "🚀 Starting BHABIT CB4 Backend Server..."
 echo "📍 Looking for backend server..."
 
-# Check if backend exists in parent directory
+# Check if backend exists in parent directory  
 if [ -f "../backend/app.py" ]; then
     echo "✅ Found backend in ../backend/"
     cd ../backend

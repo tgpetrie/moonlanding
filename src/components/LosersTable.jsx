@@ -115,10 +115,15 @@ const LosersTable = () => {
               
               {/* Symbol and Price */}
               <div className="flex items-center gap-3">
-                <span className="font-headline font-bold text-white text-lg tracking-wide">
+                <a 
+                  href={`https://www.coinbase.com/advanced-trade/spot/${item.symbol}-USD`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-headline font-bold text-white text-lg tracking-wide hover:text-pink transition-colors duration-300 cursor-pointer"
+                >
                   {item.symbol}
-                </span>
-                <span className="font-mono text-xl text-white font-bold px-3 py-1 rounded-lg">
+                </a>
+                <span className="font-mono text-xl text-[#00C0A5] font-bold px-3 py-1 rounded-lg">
                   {(() => {
                     if (typeof item.price === 'number' && Number.isFinite(item.price)) {
                       if (item.price < 1 && item.price > 0) {
