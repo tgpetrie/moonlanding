@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import GainersTable from './components/GainersTable';
 import LosersTable from './components/LosersTable';
 import TopBannerScroll from './components/TopBannerScroll';
@@ -18,6 +19,11 @@ const StatusBadge = ({ isConnected, lastUpdate }) => (
   </div>
 );
 
+StatusBadge.propTypes = {
+  isConnected: PropTypes.bool.isRequired,
+  lastUpdate: PropTypes.instanceOf(Date).isRequired,
+};
+
 export default function App() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [isConnected, setIsConnected] = useState(true);
@@ -28,24 +34,30 @@ export default function App() {
   useEffect(() => {
     let intervalId;
     let countdownId;
+    
     const checkConnection = async () => {
       try {
         const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/api`);
         setIsConnected(response.ok);
       } catch (error) {
+        console.error('Connection check failed:', error);
         setIsConnected(false);
       }
     };
+    
     checkConnection();
+    
     intervalId = setInterval(() => {
       checkConnection();
       setRefreshKey((prev) => prev + 1);
       setLastUpdate(new Date());
       setCountdown(POLL_INTERVAL / 1000);
     }, POLL_INTERVAL);
+    
     countdownId = setInterval(() => {
       setCountdown((prev) => (prev > 1 ? prev - 1 : POLL_INTERVAL / 1000));
     }, 1000);
+    
     return () => {
       clearInterval(intervalId);
       clearInterval(countdownId);
