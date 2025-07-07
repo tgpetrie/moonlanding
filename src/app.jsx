@@ -37,7 +37,7 @@ export default function App() {
     
     const checkConnection = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://bhabit-mooners-production.up.railway.app'}/api/health`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://bhabit-mooners-production.up.railway.app'}`);
         setIsConnected(response.ok);
       } catch (error) {
         // Handle the exception by logging and updating connection state
