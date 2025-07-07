@@ -48,14 +48,15 @@ const FALLBACK_DATA = {
 // Fetch data from API
 export const fetchData = async (endpoint) => {
   try {
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001';
-    const response = await fetch(`${apiUrl}${endpoint}`);
+    console.log(`Fetching data from: ${endpoint}`);
+    const response = await fetch(endpoint);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
     const data = await response.json();
+    console.log(`Successfully fetched data from ${endpoint}:`, data);
     return data;
   } catch (error) {
     console.warn(`API call failed for ${endpoint}, using fallback data:`, error.message);
