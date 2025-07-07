@@ -1,6 +1,9 @@
 // API configuration for BHABIT CB4
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
+console.log('API_BASE_URL configured as:', API_BASE_URL);
+console.log('Environment variables:', import.meta.env);
+
 // API endpoints matching your backend
 export const API_ENDPOINTS = {
   topBanner: `${API_BASE_URL}/api/component/top-banner-scroll`,
