@@ -5,7 +5,7 @@ import LosersTable from './components/LosersTable';
 import TopBannerScroll from './components/TopBannerScroll';
 import BottomBannerScroll from './components/BottomBannerScroll';
 import Footer from './components/Footer';
-import Logo from './yup.png';
+import yup from './yup.png';
 
 // Live data polling interval (ms)
 const POLL_INTERVAL = 30000;
@@ -107,7 +107,7 @@ export default function App() {
           {/* Logo and Tagline - Center */}
           <div className="mb-4">
             <img
-              src={Logo}
+              src={yup}
               alt="BHABIT"
               className="h-32 sm:h-40 lg:h-48 animate-breathing hover:drop-shadow-[0_0_30px_rgb(147,51,234)] transition-all duration-500 cursor-pointer"
             />
